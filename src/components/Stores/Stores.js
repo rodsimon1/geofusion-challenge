@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import JsonData from '../../data/data.json';
-import { StyledPaginateContainer, TableContainer, RevenueColumn } from './StoresStyles';
+import { StyledPaginateContainer, TableContainer, RevenueColumn, SearchInput } from './StoresStyles';
 
 const allStores = JsonData.stores;
 console.log('All Stores', allStores);
@@ -11,22 +11,32 @@ const Stores = () => {
   const [stores, setStores] = useState(allStores);
   const [pageNumber, setPageNumber] = useState(0);
   const [minRevenue, setMinRevenue] = useState(15000);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // const revenueFormat = (number) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number);
 
   const storesPerpage = 10;
   const pagesVisited = pageNumber * storesPerpage;
 
-  const displayStores = stores.slice(pagesVisited, pagesVisited + storesPerpage).map((store, index) => {
-    return (
-      <tr key={index}>
-        <td>{store.name}</td>
-        <RevenueColumn minRevenue={minRevenue} storeRevenue={store.revenue}>
-          {store.revenue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-        </RevenueColumn>
-      </tr>
-    );
-  });
+  const displayStores = stores
+    .filter((store) => {
+      if (searchTerm === '') {
+        return store;
+      } else if (store.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())) {
+        return store;
+      }
+    })
+    .slice(pagesVisited, pagesVisited + storesPerpage)
+    .map((store, index) => {
+      return (
+        <tr key={index}>
+          <td>{store.name}</td>
+          <RevenueColumn minRevenue={minRevenue} storeRevenue={store.revenue}>
+            {store.revenue.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          </RevenueColumn>
+        </tr>
+      );
+    });
 
   const pageCount = Math.ceil(stores.length / storesPerpage);
 
@@ -37,6 +47,8 @@ const Stores = () => {
 
   return (
     <div>
+      <SearchInput type="text" placeholder="Filter for Stores" onChange={(e) => setSearchTerm(e.target.value)} />
+
       <TableContainer>
         <thead>
           <tr>

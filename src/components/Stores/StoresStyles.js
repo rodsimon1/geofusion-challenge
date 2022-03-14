@@ -44,8 +44,8 @@ export const StyledPaginateContainer = styled.div`
       padding: 10px;
       margin: 8px;
       border-radius: 10px;
-      border: 1px solid #0366d6;
-      color: #0366d6;
+      border: 1px solid black;
+      color: black;
 
       &:hover {
         color: white;
@@ -61,5 +61,19 @@ export const StyledPaginateContainer = styled.div`
 
   .break-me {
     cursor: default;
+  }
+`;
+
+export const SearchInput = styled.input`
+  padding: 10px;
+  margin: 15px 0;
+  width: 100%;
+  font-size: 20px;
+  box-sizing: border-box;
+  background-color: #f0f8ff;
+
+  &:focus {
+    outline: none;
+    background-color: #f5f5dc;
   }
 `;
