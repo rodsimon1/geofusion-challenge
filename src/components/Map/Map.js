@@ -2,10 +2,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
 const Map = ({ stores, minRevenue }) => {
-  const position = [-23.603, -46.661];
+  const startPosition = [-23.603, -46.661];
   return (
-    <div>
-      <MapContainer style={{ height: '500px', width: '500px' }} center={position} zoom={12}>
+    <>
+      <MapContainer style={{ height: '500px', width: '500px' }} center={startPosition} zoom={12}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -30,7 +30,7 @@ const Map = ({ stores, minRevenue }) => {
           );
         })}
       </MapContainer>
-    </div>
+    </>
   );
 };
 

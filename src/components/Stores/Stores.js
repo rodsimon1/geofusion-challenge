@@ -2,8 +2,16 @@ import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import JsonData from '../../data/data.json';
-import { StyledPaginateContainer, TableContainer, RevenueColumn, SearchInput, MinRevenueForm } from './StoresStyles';
 import Map from '../Map/Map';
+import {
+  StyledPaginateContainer,
+  TableContainer,
+  RevenueColumn,
+  SearchInput,
+  MinRevenueForm,
+  InputsContainer,
+  StoresAndMapContainer,
+} from './StoresStyles';
 
 const allStores = JsonData.stores;
 console.log('All Stores', allStores);
@@ -14,6 +22,7 @@ const Stores = () => {
   const [minRevenue, setMinRevenue] = useState(15000);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // ** Pagination Logic **
   const storesPerpage = 10;
   const pagesVisited = pageNumber * storesPerpage;
 
@@ -24,6 +33,7 @@ const Stores = () => {
     setPageNumber(selected);
   };
 
+  // ** Store Display logic **
   const displayStores = stores
     .filter((store) => {
       if (searchTerm === '') {
@@ -45,8 +55,8 @@ const Stores = () => {
     });
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <>
+      <InputsContainer>
         <SearchInput
           type="text"
           name="search"
@@ -57,9 +67,9 @@ const Stores = () => {
           <label htmlFor="">Faturamento mínimo esperado</label>
           <input type="text" name="minRevenue" placeholder="15.000,00" onChange={(e) => setMinRevenue(e.target.value)} />
         </MinRevenueForm>
-      </div>
+      </InputsContainer>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+      <StoresAndMapContainer>
         <div>
           <TableContainer>
             <thead>
@@ -71,6 +81,7 @@ const Stores = () => {
             <tbody>{displayStores}</tbody>
           </TableContainer>
 
+          {/* Container to style Pagination with Styled Components */}
           <StyledPaginateContainer>
             <ReactPaginate
               previousLabel="< Previous"
@@ -91,8 +102,8 @@ const Stores = () => {
         <div>
           <Map stores={stores} minRevenue={minRevenue}></Map>
         </div>
-      </div>
-    </div>
+      </StoresAndMapContainer>
+    </>
   );
 };
 

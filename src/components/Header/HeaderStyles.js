@@ -5,4 +5,5 @@ export const HeaderContainer = styled.div`
   border: 1px solid white;
   color: white;
   padding-left: 30px;
+  margin-bottom: 10px;
 `;

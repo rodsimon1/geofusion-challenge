@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+export const InputsContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const StoresAndMapContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+
 export const TableContainer = styled.table`
   border-collapse: collapse;
   width: 100%;
@@ -29,12 +40,14 @@ export const RevenueColumn = styled.td`
 
 export const StyledPaginateContainer = styled.div`
   .pagination {
+    /* border: 1px solid red; */
     color: #0080b2;
     width: 100%;
     height: 40px;
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-items: center;
+    align-items: center;
 
     a {
       cursor: pointer;
