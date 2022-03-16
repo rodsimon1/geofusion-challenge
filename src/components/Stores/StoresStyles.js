@@ -8,11 +8,8 @@ export const TableContainer = styled.table`
   th {
     background-color: #0080b2;
     color: white;
+    cursor: pointer;
   }
-
-  /* td {
-    color: ${(props) => (props.minRevenue < props.storeRevenue ? 'blue' : 'red')};
-  } */
 
   th,
   td {
@@ -32,7 +29,7 @@ export const RevenueColumn = styled.td`
 
 export const StyledPaginateContainer = styled.div`
   .pagination {
-    color: #0366d6;
+    color: #0080b2;
     width: 100%;
     height: 40px;
     list-style: none;
@@ -49,14 +46,14 @@ export const StyledPaginateContainer = styled.div`
 
       &:hover {
         color: white;
-        background-color: #0366d6;
+        background-color: #0080b2;
       }
     }
   }
 
   .active a {
     color: white;
-    background-color: #0366d6;
+    background-color: #0080b2;
   }
 
   .break-me {
@@ -66,14 +63,33 @@ export const StyledPaginateContainer = styled.div`
 
 export const SearchInput = styled.input`
   padding: 10px;
-  margin: 15px 0;
-  width: 100%;
+  margin: 20px 0;
+  width: 30%;
   font-size: 20px;
   box-sizing: border-box;
+  /* background-image: url('../../images/search.svg');
+  background-repeat: no-repeat; */
   background-color: #f0f8ff;
 
   &:focus {
     outline: none;
     background-color: #f5f5dc;
+  }
+`;
+
+export const MinRevenueForm = styled.form`
+  width: 30%;
+
+  input {
+    background-color: #f0f8ff;
+    font-size: 20px;
+    padding: 10px;
+    margin: 20px 0;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      background-color: #f5f5dc;
+    }
   }
 `;
